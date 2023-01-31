@@ -3,14 +3,14 @@ package com.milap.tambolaticketgenerator.model;
 import java.util.Arrays;
 
 public class Ticket {
-    private int id;
+    private String id;
     private int[][] numbers = new int[3][9];
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

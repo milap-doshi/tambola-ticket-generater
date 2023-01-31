@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.UUID;
 
 @Service
 public class TicketGenerator {
@@ -22,23 +23,18 @@ public class TicketGenerator {
         this.sessionValidator = sessionValidator;
     }
 
-    /*
-    public static void main(String[] args) {
-        TicketGenerator tg = new TicketGenerator();
-        tg.generateNewTicket();
-    }
-    */
-
     public Ticket generateNewTicket(String session) {
         Ticket ticket = null;
         do {
             ticket = getNewTicket();
         } while (!sessionValidator.addTicketToSession(session, ticket));
+//        printTicket(ticket.getNumbers());
         return ticket;
     }
 
     private Ticket getNewTicket() {
         Ticket ticket = new Ticket();
+        ticket.setId(UUID.randomUUID().toString());
         int[][] numbersArray = ticket.getNumbers();
         /*Initializes a number in each columns*/
         prepareTemplate(numbersArray);
