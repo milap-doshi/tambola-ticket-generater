@@ -4,8 +4,6 @@ import com.milap.tambolaticketgenerator.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Random;
 import java.util.UUID;
 
@@ -23,16 +21,7 @@ public class TicketGenerator {
         this.sessionValidator = sessionValidator;
     }
 
-    public Ticket generateNewTicket(String session) {
-        Ticket ticket = null;
-        do {
-            ticket = getNewTicket();
-        } while (!sessionValidator.addTicketToSession(session, ticket));
-//        printTicket(ticket.getNumbers());
-        return ticket;
-    }
-
-    private Ticket getNewTicket() {
+    public Ticket getNewTicket() {
         Ticket ticket = new Ticket();
         ticket.setId(UUID.randomUUID().toString());
         int[][] numbersArray = ticket.getNumbers();

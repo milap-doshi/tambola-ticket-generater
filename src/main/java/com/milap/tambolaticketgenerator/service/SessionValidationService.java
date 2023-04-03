@@ -27,8 +27,14 @@ public class SessionValidationService {
         }
         return isUnique;
     }
+    
+    public static HashMap<String, HashSet<Ticket>> getSessionMap() {
+		return sessionMap;
+	}
 
-    public void resetSessionCache() {
+
+
+	public void resetSessionCache() {
         sessionMap.clear();
     }
 }
