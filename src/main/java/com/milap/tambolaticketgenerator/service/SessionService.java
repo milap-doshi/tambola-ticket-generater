@@ -3,10 +3,13 @@ package com.milap.tambolaticketgenerator.service;
 import java.util.HashMap;
 import java.util.UUID;
 
+import com.milap.tambolaticketgenerator.SessionName;
 import org.springframework.stereotype.Service;
 
 import com.milap.tambolaticketgenerator.model.Session;
 import com.milap.tambolaticketgenerator.model.Ticket;
+
+import static com.milap.tambolaticketgenerator.SessionName.generateSessionName;
 
 @Service
 public class SessionService {
@@ -19,7 +22,7 @@ public class SessionService {
 	}
 
 	public String startASession() {
-		String sessionId = UUID.randomUUID().toString();
+		String sessionId = generateSessionName();
 		Session session = new Session(sessionId);
 		sessionHashMap.put(sessionId, session);
 		return sessionId;
