@@ -14,9 +14,9 @@ public class TicketGenerator {
 	private static final int[] EXCEPT_TWO = new int[] { 0, 1 };
 	private static Random random = new Random();
 
-	public Ticket getNewTicket() {
+	public Ticket getNewTicket(int nextNumber) {
 		Ticket ticket = new Ticket();
-		ticket.setId(UUID.randomUUID().toString());
+		ticket.setId(String.valueOf(nextNumber));
 		int[][] numbersArray = ticket.getNumbers();
 		/* Initializes a number in each columns */
 		prepareTemplate(numbersArray);

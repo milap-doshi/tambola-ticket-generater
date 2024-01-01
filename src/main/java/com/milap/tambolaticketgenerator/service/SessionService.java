@@ -1,9 +1,7 @@
 package com.milap.tambolaticketgenerator.service;
 
 import java.util.HashMap;
-import java.util.UUID;
 
-import com.milap.tambolaticketgenerator.SessionName;
 import org.springframework.stereotype.Service;
 
 import com.milap.tambolaticketgenerator.model.Session;
@@ -17,9 +15,12 @@ public class SessionService {
 	private static HashMap<String, Session> sessionHashMap = new HashMap<>();
 	private final TicketGenerator ticketGenerator;
 
-	public SessionService(TicketGenerator ticketGenerator) {
+	private final TicketNumberGenerationService ticketNumberGenerationService;
+
+	public SessionService(TicketGenerator ticketGenerator, TicketNumberGenerationService ticketNumberGenerationService) {
 		this.ticketGenerator = ticketGenerator;
-	}
+        this.ticketNumberGenerationService = ticketNumberGenerationService;
+    }
 
 	public String startASession() {
 		String sessionId = generateSessionName();
@@ -35,9 +36,9 @@ public class SessionService {
 
 	public Ticket getTicket(String sessionId) {
 		Session session = sessionHashMap.get(sessionId);
-		Ticket ticket = ticketGenerator.getNewTicket();
+		Ticket ticket = ticketGenerator.getNewTicket(ticketNumberGenerationService.getNextNumber(sessionId));
 		while (!session.addTicketToSession(ticket)) {
-			ticket = ticketGenerator.getNewTicket();
+			ticket = ticketGenerator.getNewTicket(ticketNumberGenerationService.getNextNumber(sessionId));
 		}
 		return ticket;
 	}

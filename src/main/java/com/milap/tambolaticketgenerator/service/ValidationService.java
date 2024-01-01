@@ -1,22 +1,17 @@
 package com.milap.tambolaticketgenerator.service;
 
-import static com.milap.tambolaticketgenerator.model.ValidationStatus.*;
-import static com.milap.tambolaticketgenerator.service.SessionValidationService.getSessionMap;
-import static java.util.Collections.emptyList;
+import com.milap.tambolaticketgenerator.model.Session;
+import com.milap.tambolaticketgenerator.model.Ticket;
+import com.milap.tambolaticketgenerator.model.ValidationResult;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.milap.tambolaticketgenerator.model.ValidationStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.CompletableToListenableFutureAdapter;
-
-import com.milap.tambolaticketgenerator.model.Session;
-import com.milap.tambolaticketgenerator.model.Ticket;
-import com.milap.tambolaticketgenerator.model.ValidationResult;
+import static com.milap.tambolaticketgenerator.model.ValidationStatus.*;
+import static java.util.Collections.emptyList;
 
 @Service
 public class ValidationService {
