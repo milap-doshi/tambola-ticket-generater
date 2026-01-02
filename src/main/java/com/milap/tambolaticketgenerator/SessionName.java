@@ -1,8 +1,10 @@
 package com.milap.tambolaticketgenerator;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ResourceUtils;
 
 import java.io.IOException;
@@ -19,8 +21,10 @@ public class SessionName {
 
     private SessionName() {
         try {
-            String sessionNames = FileUtils.readFileToString(ResourceUtils.getFile("classpath:verbList.txt"),
-                    StandardCharsets.UTF_8);
+            String sessionNames = IOUtils.toString(
+                    new ClassPathResource("verbList.txt").getInputStream(),
+                    StandardCharsets.UTF_8
+            );
             sessionNameList = Arrays.stream(sessionNames.split("\n")).collect(Collectors.toList());
         } catch (IOException e) {
             LOGGER.error("Error while loading Session Name Cache", e);
