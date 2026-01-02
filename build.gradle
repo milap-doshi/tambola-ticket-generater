@@ -11,6 +11,11 @@ java {
     sourceCompatibility = '17'
 }
 
+springBoot {
+    mainClass = 'com.milap.tambolaticketgenerator.TambolaTicketGeneratorApplication'
+}
+
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
