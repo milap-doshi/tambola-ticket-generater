@@ -3,6 +3,7 @@ package com.milap.tambolaticketgenerator.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,7 +25,7 @@ public class TambolaController {
 		this.sessionService = sessionService;
 	}
 
-	@PostMapping(path = "/start")
+	@GetMapping(path = "/start")
 	public ResponseEntity<String> startAGame() {
 		return ResponseEntity.ok(sessionService.startASession());
 	}
